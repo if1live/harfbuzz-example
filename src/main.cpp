@@ -21,12 +21,14 @@ int main(int argc, char** argv) {
     HBShaper russianShaper("DejaVuSerif.ttf", &lib);
     HBShaper hanShaper("fireflysung.ttf", &lib);
     HBShaper hindiShaper("Sanskrit2003.ttf", &lib);
+    HBShaper thaiShaper("NotoSansThai-Regular.ttf", &lib);
 
     latinShaper.init();
     arabicShaper.init();
     russianShaper.init();
     hanShaper.init();
     hindiShaper.init();
+    thaiShaper.init();
 
     HBText hbt1 = {
         "ficellé fffffi. VAV.",
@@ -63,6 +65,13 @@ int main(int argc, char** argv) {
         HB_DIRECTION_LTR
     };
 
+    HBText hbt6 = {
+        "นายนี่ไม่ได้เปลี่รํ่า",
+        "th",
+        HB_SCRIPT_THAI,
+        HB_DIRECTION_LTR
+    };
+
     latinShaper.addFeature(HBFeature::KerningOn);
 
     gl::initGL(argc, argv);
@@ -91,6 +100,11 @@ int main(int argc, char** argv) {
     for(auto mesh: hindiShaper.drawText(hbt5, 20, 20)) {
         meshes.push_back(mesh);
     }
+
+    for(auto mesh: thaiShaper.drawText(hbt6, 20, 400)) {
+        meshes.push_back(mesh);
+    }
+
     end = clock();
 
     std::cout << ((float) (end - begin) / CLOCKS_PER_SEC) * 1000 << " ms." << std::endl;

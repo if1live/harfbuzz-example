@@ -106,7 +106,7 @@ namespace gl {
 
     void initGL(int argc, char** argv) {
         int width = 800;
-        int height = 400;
+        int height = 600;
 
         if(!glfwInit()) {
             std::cerr << "glfw init failed" << std::endl;
